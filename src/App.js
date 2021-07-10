@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import {  Container } from 'react-bootstrap';
+import TodoCards from './components/TodoCards/TodoCards';
+import { ToastContainer } from "react-toastify";
+import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import TodoItemsList from './components/TodoItemsList/TodoItemsList';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <ToastContainer />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/todos" component={TodoCards} />
+          <Route exact path="/todos/:todoId" component={TodoItemsList} />
+          <Redirect to="/todos" />
+        </Switch>
+      </BrowserRouter>
+    </Container>
   );
 }
 
